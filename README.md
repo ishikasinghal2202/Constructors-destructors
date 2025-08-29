@@ -1,7 +1,4 @@
 
-================================================================================
-Study of Constructors and Destructors in C++
-================================================================================
 
 📌 AIM:
     To study and implement Constructors and Destructors Programs in C++.
