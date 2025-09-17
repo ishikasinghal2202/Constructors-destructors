@@ -57,13 +57,14 @@
 using namespace std;
 
 #### Example A 
-// Default, Parameterized, Destructor
-class Student {
-    int id;
-    string name;
-public:
-    // Default Constructor
-    Student() : id{0}, name{"Unknown"} {
+
+     // Default, Parameterized, Destructor
+     class Student {
+         int id;
+         string name;
+     public:
+         // Default Constructor
+         Student() : id{0}, name{"Unknown"} {
         cout << "Default Constructor called\n";
     }
 
@@ -83,13 +84,14 @@ public:
 };
 
 #### Example B 
-// Copy Constructor, Move Constructor, Rule of Five
-class Buffer {
-    char* data;
-    size_t size;
-public:
+  
+    // Copy Constructor, Move Constructor, Rule of Five
+    class Buffer {
+      char* data;
+      size_t size;
+    public:
     // Default
-    Buffer() : data{nullptr}, size{0} {}
+      Buffer() : data{nullptr}, size{0} {}
 
     // Parameterized
     explicit Buffer(const char* s) {
@@ -150,8 +152,8 @@ public:
     }
 };
 
-// ------------------------------ Main ------------------------------
-int main() {
+     // ------------------------------ Main ------------------------------
+   int main() {
     cout << "\n--- Example A: Student Class ---\n";
     Student a;            // Default constructor
     Student b(101, "Ava");// Parameterized constructor
