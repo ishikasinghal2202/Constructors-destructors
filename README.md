@@ -15,6 +15,15 @@
     - Identify common pitfalls (shallow copies, missing virtual destructor, etc.).
 
 
+## Algorithm:
+1. Define a class.
+2. Declare multiple constructors with different parameter lists.
+3. Implement each constructor with specific initialization logic.
+4. Create objects using different sets of arguments.
+5. Compiler selects the appropriate constructor based on arguments.
+6. Ensure no ambiguity among overloaded constructors.
+
+
 ## THEORY 
 
 ### 1) Constructor:
@@ -49,143 +58,6 @@
    - Forgetting virtual destructors in base classes.
    - Heavy constructor work without exception-safety.
 
-
- ### PROGRAM EXAMPLES:
-#include <iostream>
-#include <string>
-#include <cstring>
-using namespace std;
-
-#### Example A 
-
-     // Default, Parameterized, Destructor
-     class Student {
-         int id;
-         string name;
-     public:
-         // Default Constructor
-         Student() : id{0}, name{"Unknown"} {
-        cout << "Default Constructor called\n";
-    }
-
-    // Parameterized Constructor
-    Student(int i, string n) : id{i}, name{move(n)} {
-        cout << "Parameterized Constructor called\n";
-    }
-
-    // Destructor
-    ~Student() {
-        cout << "Destructor called for " << name << "\n";
-    }
-
-    void show() const {
-        cout << id << " : " << name << endl;
-    }
-};
-
-#### Example B 
-  
-    // Copy Constructor, Move Constructor, Rule of Five
-    class Buffer {
-      char* data;
-      size_t size;
-    public:
-    // Default
-      Buffer() : data{nullptr}, size{0} {}
-
-    // Parameterized
-    explicit Buffer(const char* s) {
-        size = strlen(s);
-        data = new char[size+1];
-        memcpy(data, s, size+1);
-        cout << "Parameterized Buffer created\n";
-    }
-
-    // Copy Constructor (deep copy)
-    Buffer(const Buffer& other) : size{other.size} {
-        data = new char[size+1];
-        memcpy(data, other.data, size+1);
-        cout << "Copy Constructor called\n";
-    }
-
-    // Copy Assignment
-    Buffer& operator=(const Buffer& other) {
-        if(this != &other) {
-            delete[] data;
-            size = other.size;
-            data = new char[size+1];
-            memcpy(data, other.data, size+1);
-            cout << "Copy Assignment called\n";
-        }
-        return *this;
-    }
-
-    // Move Constructor
-    Buffer(Buffer&& other) noexcept : data{other.data}, size{other.size} {
-        other.data = nullptr;
-        other.size = 0;
-        cout << "Move Constructor called\n";
-    }
-
-    // Move Assignment
-    Buffer& operator=(Buffer&& other) noexcept {
-        if(this != &other) {
-            delete[] data;
-            data = other.data;
-            size = other.size;
-            other.data = nullptr;
-            other.size = 0;
-            cout << "Move Assignment called\n";
-        }
-        return *this;
-    }
-
-    // Destructor
-    ~Buffer() {
-        delete[] data;
-        cout << "Buffer Destructor called\n";
-    }
-
-    void print() const {
-        if(data) cout << "Data: " << data << endl;
-        else cout << "Empty Buffer\n";
-    }
-};
-
-     // ------------------------------ Main ------------------------------
-   int main() {
-    cout << "\n--- Example A: Student Class ---\n";
-    Student a;            // Default constructor
-    Student b(101, "Ava");// Parameterized constructor
-    a.show();
-    b.show();
-
-    cout << "\n--- Example B: Buffer Class ---\n";
-    Buffer buf1("Hello C++");
-    buf1.print();
-
-    cout << "\nCopying buf1 to buf2:\n";
-    Buffer buf2 = buf1; // Copy constructor
-    buf2.print();
-
-    cout << "\nMoving buf1 to buf3:\n";
-    Buffer buf3 = move(buf1); // Move constructor
-    buf3.print();
-    buf1.print(); // Now empty
-
-    cout << "\nAssignment operations:\n";
-    Buffer buf4;
-    buf4 = buf2;  // Copy assignment
-    buf4.print();
-
-    Buffer buf5;
-    buf5 = move(buf2); // Move assignment
-    buf5.print();
-    buf2.print();
-
-    cout << "\n--- End of Program ---\n";
-    return 0;
-}
 
 
 ## CONCLUSION:
