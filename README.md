@@ -1,23 +1,23 @@
 
 
-📌 AIM:
+## AIM:
     To study and implement Constructors and Destructors Programs in C++.
 
-📦 SOFTWARE USED:
+## SOFTWARE USED:
     - Visual Studio Code (VS Code)
     - g++ compiler (C++17 or later)
 
-🎯 OBJECTIVES:
+## OBJECTIVES:
     - Understand object lifecycle in C++ (creation → use → destruction).
     - Implement default, parameterized, copy, and move constructors.
     - Understand destructors and their role in resource management.
     - Learn Rule of 3/5/0 and RAII principle.
     - Identify common pitfalls (shallow copies, missing virtual destructor, etc.).
 
---------------------------------------------------------------------------------
-🧠 THEORY 
---------------------------------------------------------------------------------
-1) Constructor:
+
+## THEORY 
+
+### 1) Constructor:
    - Special member function, same name as class, no return type.
    - Used to initialize objects automatically at creation.
    - Types:
@@ -28,38 +28,35 @@
         • Delegating & Explicit Constructors
    - Best practice: Use initializer lists for efficiency.
 
-2) Destructor:
+### 2) Destructor:
    - Special member function prefixed with '~' (e.g., ~Class()).
    - Called automatically when object goes out of scope.
    - Used to release memory/resources.
    - Must be virtual if class is used polymorphically.
 
-3) Rule of Three / Five / Zero:
+### 3) Rule of Three / Five / Zero:
    - If class defines one of destructor, copy ctor, copy assignment → needs all three.
    - Rule of Five (C++11): Add move ctor and move assignment.
    - Rule of Zero: Prefer STL/RAII classes to avoid manual management.
 
-4) RAII (Resource Acquisition Is Initialization):
+### 4) RAII (Resource Acquisition Is Initialization):
    - Acquire resources in constructor.
    - Release them in destructor.
    - Guarantees cleanup even with exceptions.
 
-5) Pitfalls:
+### 5) Pitfalls:
    - Shallow copy leads to double free or memory leaks.
    - Forgetting virtual destructors in base classes.
    - Heavy constructor work without exception-safety.
 
---------------------------------------------------------------------------------
-🧪 PROGRAM EXAMPLES
---------------------------------------------------------------------------------
-*/
 
+ ### PROGRAM EXAMPLES:
 #include <iostream>
 #include <string>
 #include <cstring>
 using namespace std;
 
-// ------------------------------ Example A ------------------------------
+#### Example A 
 // Default, Parameterized, Destructor
 class Student {
     int id;
@@ -85,7 +82,7 @@ public:
     }
 };
 
-// ------------------------------ Example B ------------------------------
+#### Example B 
 // Copy Constructor, Move Constructor, Rule of Five
 class Buffer {
     char* data;
@@ -189,7 +186,7 @@ int main() {
 }
 
 
-CONCLUSION:
+## CONCLUSION:
 
     - Constructors help initialize objects automatically in various ways.
     - Destructors ensure safe cleanup of resources.
